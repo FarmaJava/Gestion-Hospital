@@ -94,9 +94,14 @@ def vista_medico(volver):
         controls=[
 
             crear_sidebar(
-                "Panel Médico",
-                ft.Colors.BLUE_GREY_900,
-                volver
+               titulo="Panel Médico",
+               color=ft.Colors.BLUE_GREY_900,
+               volver=volver,
+               opciones=[
+                  ("Pacientes", ft.Icons.PERSON),
+                  ("Consultas", ft.Icons.MEDICAL_SERVICES),
+                  ("Historial", ft.Icons.FOLDER),
+               ]
             ),
 
             ft.Container(

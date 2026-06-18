@@ -1,43 +1,59 @@
 import flet as ft
 
 
-def crear_sidebar(titulo, color, volver):
+def crear_sidebar(titulo, color, volver, opciones):
+
+    controles = [
+
+        ft.Text(
+            titulo,
+            size=25,
+            weight=ft.FontWeight.BOLD
+        ),
+
+        ft.Divider(),
+    ]
+
+    # Opciones del menú
+    for texto, icono in opciones:
+
+        controles.append(
+
+            ft.TextButton(
+                texto,
+                icon=icono
+            )
+        )
+
+    # Empuja el botón al fondo
+    controles.append(
+        ft.Container(expand=True)
+    )
+
+    controles.append(
+        ft.Divider()
+    )
+
+    controles.append(
+
+        ft.TextButton(
+            "Cerrar sesión",
+            icon=ft.Icons.LOGOUT,
+            on_click=lambda e: volver()
+        )
+
+    )
 
     return ft.Container(
+
         width=250,
+
         bgcolor=color,
+
         padding=20,
+
         content=ft.Column(
-            controls=[
-
-                ft.Text(
-                    titulo,
-                    size=25,
-                    weight=ft.FontWeight.BOLD
-                ),
-
-                ft.Divider(),
-
-                ft.TextButton(
-                    "Inicio",
-                    icon=ft.Icons.HOME,
-                    on_click=lambda e: volver()
-                ),
-
-                ft.TextButton(
-                    "Pacientes",
-                    icon=ft.Icons.PERSON
-                ),
-
-                ft.TextButton(
-                    "Citas",
-                    icon=ft.Icons.CALENDAR_MONTH
-                ),
-
-                ft.TextButton(
-                    "Historial",
-                    icon=ft.Icons.FOLDER
-                )
-            ]
+            expand=True,
+            controls=controles
         )
     )

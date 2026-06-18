@@ -13,3 +13,4 @@ class Cita:
         self.fecha = fecha
         self.hora = hora
         self.estado = estado
+        

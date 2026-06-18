@@ -117,11 +117,15 @@ def vista_secretaria(volver):
             # =========================================
             # SIDEBAR
             # =========================================
-
             crear_sidebar(
-                "Panel Secretaria",
-                ft.Colors.GREEN_900,
-                volver
+                 titulo="Panel Secretaria",
+                 color=ft.Colors.GREEN_900,
+                 volver=volver,
+                 opciones=[
+                     ("Pacientes", ft.Icons.PERSON),
+                     ("Citas", ft.Icons.CALENDAR_MONTH),
+                     ("Agenda", ft.Icons.EVENT),
+                 ]
             ),
 
             # =========================================
