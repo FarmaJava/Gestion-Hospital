@@ -11,28 +11,25 @@ def crear_sidebar(titulo, color, volver, opciones):
             weight=ft.FontWeight.BOLD
         ),
 
-        ft.Divider(),
+        ft.Divider()
+
     ]
 
-    # Opciones del menú
-    for texto, icono in opciones:
+    for texto, icono, accion in opciones:
 
         controles.append(
 
             ft.TextButton(
                 texto,
-                icon=icono
+                icon=icono,
+                on_click=lambda e, accion=accion: accion()
             )
+
         )
 
-    # Empuja el botón al fondo
-    controles.append(
-        ft.Container(expand=True)
-    )
+    controles.append(ft.Container(expand=True))
 
-    controles.append(
-        ft.Divider()
-    )
+    controles.append(ft.Divider())
 
     controles.append(
 
@@ -56,4 +53,5 @@ def crear_sidebar(titulo, color, volver, opciones):
             expand=True,
             controls=controles
         )
+
     )

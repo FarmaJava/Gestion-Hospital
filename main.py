@@ -2,11 +2,10 @@ import flet as ft
 
 from database.models.usuario import Usuario
 
-from views.menu_principal import vista_menu_principal
-from views.medico import vista_medico
-from views.secretaria import vista_secretaria
+from views.medico.dashboard import vista_medico
+from views.secretaria.secretaria import vista_secretaria
 from views.login import vista_login
-from views.admin import vista_admin
+from views.admin.admin import vista_admin
 
 class HospitalApp:
 
