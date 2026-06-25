@@ -1,4 +1,4 @@
-from connection import obtener_conexion
+from database.connection import obtener_conexion
 
 conexion = obtener_conexion()
 cursor = conexion.cursor()

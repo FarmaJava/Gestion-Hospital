@@ -15,14 +15,19 @@ def crear_sidebar(titulo, color, volver, opciones):
 
     ]
 
-    for texto, icono, accion in opciones:
+    for opcion in opciones:
+
+        texto = opcion[0]
+        icono = opcion[1]
+
+        accion = opcion[2] if len(opcion) > 2 else None
 
         controles.append(
 
             ft.TextButton(
                 texto,
                 icon=icono,
-                on_click=lambda e, accion=accion: accion()
+                on_click=(lambda e, a=accion: a()) if accion else None
             )
 
         )

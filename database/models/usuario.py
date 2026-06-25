@@ -95,7 +95,7 @@ class Usuario:
 
         conexion.commit()
         
-        
+      
  def existe_usuario(self, usuario):
         conexion = obtener_conexion()
         cursor = conexion.cursor()

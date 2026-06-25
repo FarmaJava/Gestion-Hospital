@@ -1,19 +1,15 @@
 import flet as ft
-
 from database.models.usuario import Usuario
-
 from views.medico.dashboard import vista_medico
-from views.secretaria.secretaria import vista_secretaria
+from views.secretaria import vista_secretaria
+from views.admin import vista_admin
 from views.login import vista_login
-from views.admin.admin import vista_admin
 
 class HospitalApp:
 
     def __init__(self, page: ft.Page):
         self.page = page
-
         self.configurar_pagina()
-
         self.ir_login()
 
     def configurar_pagina(self):
@@ -23,15 +19,10 @@ class HospitalApp:
         self.page.window_height = 850
         self.page.padding = 0
 
-    # NAVEGACIÓN
-
     def cambiar_vista(self, vista):
         self.page.clean()
         self.page.add(vista)
         self.page.update()
-
-    # LOGIN
-
 
     def ir_login(self):
         self.cambiar_vista(
@@ -39,18 +30,13 @@ class HospitalApp:
                 iniciar_sesion=self.iniciar_sesion
             )
         )
-        
-    # FUNCIONES DE USUARIO
 
     def iniciar_sesion(self, usuario, password):
-
         user = Usuario()
-
         datos = user.login(usuario, password)
 
         if datos:
-            rol = datos[5]      # nombre, usuario, email, contraseña, rol
-
+            rol = datos[5] #rol corresponde a la quinta columna de usuario
             if rol == "Administrador":
                self.ir_admin()
 
@@ -67,11 +53,7 @@ class HospitalApp:
             self.page.snack_bar.open = True
             self.page.update()
 
-            
-    # ==========================
-    # MENÚ PRINCIPAL
-    # ==========================
-
+    #vistas
     def ir_medico(self):
         self.cambiar_vista(
             vista_medico(
@@ -86,36 +68,20 @@ class HospitalApp:
             )
         )
     def ir_admin(self):
-
-     user = Usuario()
-
-     self.cambiar_vista(
+        user = Usuario()
+        self.cambiar_vista(
  
         vista_admin(
-
             volver=self.ir_login,
-
             usuarios=user.listar_todos(),
-
             crear_usuario=self.crear_usuario_admin,
-
             eliminar_usuario=self.eliminar_usuario,
-
             editar_usuario=self.editar_usuario
         )
     )
+        
     def crear_usuario_admin(self, nombre, usuario, email, password, rol):
-
         nuevo = Usuario()
-
-        if nuevo.existe_usuario(usuario):
-            self.page.snack_bar = ft.SnackBar(
-                ft.Text("Ese usuario ya existe.")
-            )
-            self.page.snack_bar.open = True
-            self.page.update()
-            return
-
         nuevo.nombre = nombre
         nuevo.usuario = usuario
         nuevo.email = email
@@ -126,26 +92,18 @@ class HospitalApp:
             self.page.snack_bar = ft.SnackBar(
                 ft.Text("Usuario creado correctamente.")
             )
-        else:
-            self.page.snack_bar = ft.SnackBar(
-                ft.Text("Error al crear el usuario.")
-            )
 
         self.page.snack_bar.open = True
         self.page.update()
         self.ir_admin() 
+        
     def eliminar_usuario(self, id_usuario):
-
         user = Usuario()
-
         user.eliminar(id_usuario)
-
         self.ir_admin()  
         
     def editar_usuario(self, id_usuario):
-
         print(id_usuario)     
-        
         
 def main(page: ft.Page):
     HospitalApp(page)

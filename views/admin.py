@@ -1,7 +1,6 @@
 import flet as ft
 
-from components.sidebar import crear_sidebar
-
+from database.models.sidebar import crear_sidebar
 
 def vista_admin(
         volver,
@@ -12,11 +11,9 @@ def vista_admin(
 ):
 
     campo_nombre = ft.TextField(label="Nombre completo")
-
     campo_usuario = ft.TextField(label="Usuario")
-
     campo_email = ft.TextField(label="Email")
-
+    
     campo_password = ft.TextField(
         label="Contraseña",
         password=True,
@@ -46,23 +43,16 @@ def vista_admin(
     )
 
     for usuario in usuarios:
-
         tabla.rows.append(
-
             ft.DataRow(
                 cells=[
-
                     ft.DataCell(ft.Text(usuario[1])),
                     ft.DataCell(ft.Text(usuario[2])),
                     ft.DataCell(ft.Text(usuario[3])),
                     ft.DataCell(ft.Text(usuario[5])),
-
                     ft.DataCell(
-
                         ft.Row(
-
                             controls=[
-
                                 ft.IconButton(
                                     icon=ft.Icons.EDIT,
                                     tooltip="Editar",
@@ -85,9 +75,7 @@ def vista_admin(
     return ft.Row(
 
         expand=True,
-
         controls=[
-
         crear_sidebar(
             titulo="Administrador",
             color=ft.Colors.BLUE_GREY_900,
@@ -100,17 +88,11 @@ def vista_admin(
         ),
 
             ft.Container(
-
                 expand=True,
-
                 padding=20,
-
                 content=ft.Column(
-
                     scroll=ft.ScrollMode.AUTO,
-
                     controls=[
-
                         ft.Text(
                             "Administración de Usuarios",
                             size=32,
@@ -118,23 +100,17 @@ def vista_admin(
                         ),
 
                         ft.Container(
-
                             bgcolor=ft.Colors.BLUE_GREY_800,
-
                             padding=20,
-
                             border_radius=15,
-
                             content=ft.Column(
 
                                 controls=[
-
                                     ft.Text(
                                         "Crear nuevo empleado",
                                         size=22,
                                         weight=ft.FontWeight.BOLD
                                     ),
-
                                     campo_nombre,
                                     campo_usuario,
                                     campo_email,
@@ -142,11 +118,8 @@ def vista_admin(
                                     campo_rol,
 
                                     ft.ElevatedButton(
-
                                         "Crear Usuario",
-
                                         icon=ft.Icons.PERSON_ADD,
-
                                         on_click=lambda e: crear_usuario(
                                             campo_nombre.value,
                                             campo_usuario.value,
@@ -160,17 +133,11 @@ def vista_admin(
                         ),
 
                         ft.Container(
-
                             margin=ft.margin.only(top=20),
-
                             bgcolor=ft.Colors.BLUE_GREY_800,
-
                             padding=20,
-
                             border_radius=15,
-
                             content=ft.Column(
-
                                 controls=[
 
                                     ft.Text(

@@ -1,24 +1,17 @@
 import flet as ft
-
-from components.sidebar import crear_sidebar
-
+from database.models.sidebar import crear_sidebar
 
 def vista_secretaria(volver):
-
-    # =========================================
-    # CAMPOS DEL FORMULARIO
-    # =========================================
-
     campo_nombre = ft.TextField(
         label="Paciente",
         width=250
     )
-
+    
     campo_dni = ft.TextField(
         label="DNI",
         width=180
     )
-
+    
     campo_medico = ft.Dropdown(
         label="Médico",
         width=220,
@@ -41,10 +34,7 @@ def vista_secretaria(volver):
         width=120
     )
 
-    # =========================================
-    # TABLA DE CITAS
-    # =========================================
-
+#citas
     tabla_citas = ft.DataTable(
         expand=True,
         columns=[
@@ -57,33 +47,7 @@ def vista_secretaria(volver):
         rows=[]
     )
 
-    # =========================================
-    # FUNCIÓN AGENDAR
-    # =========================================
-
     def agendar_cita(e):
-
-        # Validación básica
-        if (
-            campo_nombre.value == ""
-            or campo_dni.value == ""
-            or campo_medico.value is None
-            or campo_fecha.value == ""
-            or campo_hora.value == ""
-        ):
-
-            page = e.page
-
-            page.snack_bar = ft.SnackBar(
-                ft.Text("Complete todos los campos")
-            )
-
-            page.snack_bar.open = True
-            page.update()
-
-            return
-
-        # Agregar fila a la tabla
         nueva_fila = ft.DataRow(
             cells=[
                 ft.DataCell(ft.Text(campo_nombre.value)),
@@ -95,28 +59,17 @@ def vista_secretaria(volver):
         )
 
         tabla_citas.rows.append(nueva_fila)
-
-        # Limpiar campos
-        campo_nombre.value = ""
+        campo_nombre.value = ""    #limpia campos
         campo_dni.value = ""
         campo_medico.value = None
         campo_fecha.value = ""
         campo_hora.value = ""
 
-        # Actualizar interfaz
         e.page.update()
-
-    # =========================================
-    # VISTA PRINCIPAL
-    # =========================================
 
     return ft.Row(
         expand=True,
         controls=[
-
-            # =========================================
-            # SIDEBAR
-            # =========================================
             crear_sidebar(
                  titulo="Panel Secretaria",
                  color=ft.Colors.GREEN_900,
@@ -128,10 +81,6 @@ def vista_secretaria(volver):
                  ]
             ),
 
-            # =========================================
-            # CONTENIDO
-            # =========================================
-
             ft.Container(
                 expand=True,
                 padding=20,
@@ -139,17 +88,11 @@ def vista_secretaria(volver):
                     scroll=ft.ScrollMode.AUTO,
                     controls=[
 
-                        # TÍTULO
                         ft.Text(
                             "Gestión de Citas",
                             size=32,
                             weight=ft.FontWeight.BOLD
                         ),
-
-                        # =========================================
-                        # FORMULARIO
-                        # =========================================
-
                         ft.Container(
                             padding=20,
                             border_radius=15,
@@ -188,10 +131,6 @@ def vista_secretaria(volver):
                                 ]
                             )
                         ),
-
-                        # =========================================
-                        # TABLA
-                        # =========================================
 
                         ft.Container(
                             margin=ft.margin.only(top=20),

@@ -3,10 +3,7 @@ from connection import obtener_conexion
 conexion = obtener_conexion()
 cursor = conexion.cursor()
 
-# ==========================
-# USUARIO
-# ==========================
-
+# usuario
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Usuario(
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,10 +13,7 @@ CREATE TABLE IF NOT EXISTS Usuario(
 )
 """)
 
-# ==========================
-# PACIENTE
-# ==========================
-
+#paciente
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Paciente(
     id_paciente INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,10 +28,7 @@ CREATE TABLE IF NOT EXISTS Paciente(
 )
 """)
 
-# ==========================
-# MEDICO
-# ==========================
-
+# medico
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Medico(
     id_medico INT AUTO_INCREMENT PRIMARY KEY,
@@ -54,10 +45,7 @@ CREATE TABLE IF NOT EXISTS Medico(
 )
 """)
 
-# ==========================
-# CITA
-# ==========================
-
+# citas
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Cita(
     id_cita INT AUTO_INCREMENT PRIMARY KEY,
@@ -75,10 +63,7 @@ CREATE TABLE IF NOT EXISTS Cita(
 )
 """)
 
-# ==========================
-# HISTORIAL MEDICO
-# ==========================
-
+# historial medico
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Historial_Medico(
     id_historial INT AUTO_INCREMENT PRIMARY KEY,
@@ -91,10 +76,7 @@ CREATE TABLE IF NOT EXISTS Historial_Medico(
 )
 """)
 
-# ==========================
-# DIAGNOSTICO
-# ==========================
-
+#diagnostico
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Diagnostico(
     id_diagnostico INT AUTO_INCREMENT PRIMARY KEY,
@@ -112,10 +94,7 @@ CREATE TABLE IF NOT EXISTS Diagnostico(
 )
 """)
 
-# ==========================
-# TRATAMIENTO
-# ==========================
-
+# tratamiento
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Tratamiento(
     id_tratamiento INT AUTO_INCREMENT PRIMARY KEY,
@@ -131,5 +110,3 @@ CREATE TABLE IF NOT EXISTS Tratamiento(
 
 conexion.commit()
 conexion.close()
-
-print("Base de datos creada correctamente.")

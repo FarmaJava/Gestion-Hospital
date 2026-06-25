@@ -1,8 +1,5 @@
 import flet as ft
-
-from components.sidebar import crear_sidebar
-
-
+from database.models.sidebar import crear_sidebar
 
 def vista_medico(volver):
 
@@ -47,17 +44,16 @@ def vista_medico(volver):
         content=ft.Column(
             spacing=10,
             controls=[
-
                 ft.Text(
                     "Datos del Paciente",
                     size=22,
                     weight=ft.FontWeight.BOLD
                 ),
 
-                ft.Text("Nombre: ---"),
-                ft.Text("DNI: ---"),
-                ft.Text("Grupo sanguíneo: ---"),
-                ft.Text("Antecedentes: ---")
+                ft.Text("Nombre: "),
+                ft.Text("DNI: "),
+                ft.Text("Grupo sanguíneo: "),
+                ft.Text("Antecedentes: ")
             ]
         )
     )
@@ -92,7 +88,6 @@ def vista_medico(volver):
     return ft.Row(
         expand=True,
         controls=[
-
             crear_sidebar(
                titulo="Panel Médico",
                color=ft.Colors.BLUE_GREY_900,
@@ -110,7 +105,6 @@ def vista_medico(volver):
                 content=ft.Column(
                     scroll=ft.ScrollMode.AUTO,
                     controls=[
-
                         ft.Text(
                             "Consulta Médica",
                             size=32,

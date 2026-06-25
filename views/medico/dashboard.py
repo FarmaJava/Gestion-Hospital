@@ -1,6 +1,6 @@
 import flet as ft
 
-from components.sidebar import crear_sidebar
+from database.models.sidebar import crear_sidebar
 
 from views.medico.pacientes import vista_pacientes
 from views.medico.consultas import vista_consultas
