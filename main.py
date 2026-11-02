@@ -18,7 +18,7 @@ class HospitalApp:
         self.page.window_width = 1400
         self.page.window_height = 850
         self.page.padding = 0
-
+        self.page.window.full_screen = True
     def cambiar_vista(self, vista):
         self.page.clean()
         self.page.add(vista)
